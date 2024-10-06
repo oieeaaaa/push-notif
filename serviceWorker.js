@@ -15,15 +15,20 @@ if ('serviceWorker' in navigator) {
 
       const data = await fetch('/data.json').then(res => res.json());
 
-      registration.pushManager.getSubscription().then(function(subscription) {
+      registration.pushManager.getSubscription().then(async function(subscription) {
         if (subscription) {
           console.log('Already subscribed:', subscription);
           return subscription; // already subscribed
         }
 
-        return registration.pushManager.subscribe({
+        const prompt = await registration.pushManager.subscribe({
           userVisibleOnly: true,
           applicationServerKey: data.publicKey,
+        });
+
+        fetch('/subscribe', {
+          method: 'POST',
+          body: JSON.stringify(prompt),
         });
       })
     });
