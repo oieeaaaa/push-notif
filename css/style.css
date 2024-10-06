@@ -22,3 +22,8 @@ button#push {
   cursor: pointer;
   font-family: 'Roboto', sans-serif;
 }
+
+button#push:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

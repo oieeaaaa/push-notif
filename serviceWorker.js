@@ -16,20 +16,32 @@ if ('serviceWorker' in navigator) {
       const data = await fetch('/data.json').then(res => res.json());
 
       registration.pushManager.getSubscription().then(async function(subscription) {
+        const pushBtn = document.querySelector('#push');
+        pushBtn.innerHTML = 'Loading...';
+
         if (subscription) {
           console.log('Already subscribed:', subscription);
+          pushBtn.disabled = false;
+          pushBtn.innerHTML = 'Push me!';
           return subscription; // already subscribed
         }
 
-        const prompt = await registration.pushManager.subscribe({
-          userVisibleOnly: true,
-          applicationServerKey: data.publicKey,
-        });
+        try {
+          const prompt = await registration.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: data.publicKey,
+          });
 
-        fetch('/subscribe', {
-          method: 'POST',
-          body: JSON.stringify(prompt),
-        });
+          await fetch('/subscribe', {
+            method: 'POST',
+            body: JSON.stringify(prompt),
+          });
+
+          pushBtn.disabled = false;
+          pushBtn.innerHTML = 'Push me!';
+        } catch (error) {
+          alert('You denied the prompt...😢');
+        } 
       })
     });
 }
@@ -40,19 +52,11 @@ self.addEventListener('install', () => {
 
 self.addEventListener('push', function(event) {
 	console.log('Push message received.');
-	let notificationTitle = 'Hello';
-
-  // default options
-	const notificationOptions = {
-		body: 'Thanks for sending this push msg.',
-		data: {
-			url: 'https://web.dev/push-notifications-overview/',
-		},
-	};
+	const notificationTitle = 'Hello 👋';
+  let notificationOptions = {};
 
 	if (event.data) {
 		const dataText = event.data.text();
-		notificationTitle = 'Received Payload';
 		notificationOptions.body = `Push data: '${dataText}'`;
 	}
 

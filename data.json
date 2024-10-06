@@ -1,12 +1,4 @@
 {
-  "publicKey":"BJ3L2C6nROjMtWCa_fArUa1_YBJApMd98zm-cs4kEwXuULeJVXnWBB5OEoxpY-BfwSYIEsY-dSmw81KkwZ0qvd4",
-  "privateKey":"O3ykyMmVGCoDuJ3PLE1HlDxxNYEEVbqW2zD6lVcKbME",
-  "pushSubscription": {
-    "endpoint": "https://fcm.googleapis.com/fcm/send/cq-f-ca4R0w:APA91bERMfJA4apBMG6hCkA9AzMCbe9jUwNSPttEQMkQ2Xy6Mks8CZqp2LcNmasNUHvjjCzG6FLbnSzpxjmsRIwKs0l09_rhcFaLxusrGoEFLL_U-MwXOqMx2MWB8z7yq2Hju91B4vgJ",
-    "expirationTime": null,
-    "keys": {
-        "p256dh": "BPmh-1sfkmACS9zxQDvSdje7EfGf-Ni12IsVdqaGw6p77OI3b5ayy2s8VS6PaaIV3FC4Xri0SK_NAOWh0jtOntE",
-        "auth": "DFC1yw1CRZNdHfWZLNRDMg"
-    }
-  }
+  "publicKey": "BJ3L2C6nROjMtWCa_fArUa1_YBJApMd98zm-cs4kEwXuULeJVXnWBB5OEoxpY-BfwSYIEsY-dSmw81KkwZ0qvd4",
+  "privateKey": "O3ykyMmVGCoDuJ3PLE1HlDxxNYEEVbqW2zD6lVcKbME"
 }
